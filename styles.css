@@ -52,3 +52,26 @@ main,.footer{position:relative;z-index:1}
   .journey-marker{display:none}
   .journey-active .contact-action{opacity:1;transform:none}
 }
+
+/* Crisp line icons avoid platform emoji styling and inherit each link color. */
+.line-icon{display:inline-block;position:relative;width:14px;height:14px;flex:0 0 14px;color:inherit;font:inherit!important;transition:transform .2s ease}
+.line-icon:before,.line-icon:after{content:'';position:absolute;display:block}
+.line-icon-external:before{width:7px;height:7px;top:1px;right:1px;border-top:1.4px solid currentColor;border-right:1.4px solid currentColor}
+.line-icon-external:after{width:12px;height:1.4px;left:1px;bottom:3px;background:currentColor;transform:rotate(-45deg);transform-origin:left center}
+.line-icon-down:after{width:1.4px;height:11px;left:6px;top:0;background:currentColor}
+.line-icon-down:before{width:6px;height:6px;left:3px;bottom:1px;border-right:1.4px solid currentColor;border-bottom:1.4px solid currentColor;transform:rotate(45deg)}
+.line-icon-up{transform:rotate(180deg)}
+.line-icon-up:after{width:1.4px;height:11px;left:6px;top:0;background:currentColor}
+.line-icon-up:before{width:6px;height:6px;left:3px;bottom:1px;border-right:1.4px solid currentColor;border-bottom:1.4px solid currentColor;transform:rotate(45deg)}
+.button:hover .line-icon-external,.header-contact:hover .line-icon-external,.text-link:hover .line-icon-external,.mobile-contact:hover .line-icon-external{transform:translate(2px,-2px)}
+.hero-actions .text-link:hover .line-icon-down{transform:translateY(2px)}
+.footer a:hover .line-icon-up{transform:rotate(180deg) translateY(2px)}
+
+/* Small visual refinements without changing the page structure. */
+.button{transition:background .2s,border-color .2s,transform .2s,box-shadow .2s}
+.button-dark:hover{transform:translateY(-1px);box-shadow:0 9px 22px rgba(39,63,59,.14)}
+.button-sand:hover{transform:translateY(-1px);box-shadow:0 10px 26px rgba(0,0,0,.13)}
+.hero-photo img,.about-photo img{border:1px solid rgba(39,63,59,.1);box-shadow:0 22px 50px rgba(39,63,59,.075)}
+.header-contact{gap:14px}
+.mobile-contact{display:flex;align-items:center;justify-content:space-between;gap:14px}
+@media(prefers-reduced-motion:reduce){.line-icon,.button{transition:none!important}.button:hover{transform:none}}

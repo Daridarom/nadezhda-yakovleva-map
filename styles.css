@@ -138,3 +138,9 @@ main,.footer{position:relative;z-index:1}
 .header-contact{gap:14px}
 .mobile-contact{display:flex;align-items:center;justify-content:space-between;gap:14px}
 @media(prefers-reduced-motion:reduce){.line-icon,.button{transition:none!important}.button:hover{transform:none}}
+
+/* Metaphorical invitations retain a visible destination. */
+.action-hint{display:block;font-size:.8125rem;line-height:1.6;color:var(--muted);margin-top:8px}
+.clay-card>p.action-hint{font-size:.8125rem!important;line-height:1.6!important;margin-top:8px!important}
+@media(max-width:680px){.header-contact{font-size:.8125rem;gap:8px}.header-contact .line-icon{display:none}}
+@media(max-width:360px){.header-contact{max-width:88px;white-space:normal;line-height:1.4}}

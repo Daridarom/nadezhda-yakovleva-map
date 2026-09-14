@@ -44,6 +44,35 @@ function openHashTopic() {
 window.addEventListener('hashchange', openHashTopic);
 openHashTopic();
 
+// Motion preferences are local to this tab; no client information is stored.
+const morphoPreference = window.matchMedia('(prefers-reduced-motion: reduce)');
+const motionToggle = document.getElementById('motion-toggle');
+let morphoPaused = false;
+try { morphoPaused = sessionStorage.getItem('nadezhda-morpho-paused') === 'yes'; } catch {}
+function updateMorphoPreference() {
+  const enabled = !morphoPaused && !morphoPreference.matches && !document.hidden;
+  document.body.dataset.morphoMotion = enabled ? 'on' : 'off';
+  if (motionToggle) {
+    motionToggle.hidden = morphoPreference.matches;
+    motionToggle.textContent = morphoPaused ? 'Включить полёт' : 'Остановить полёт';
+  }
+  document.dispatchEvent(new Event('morphomotionchange'));
+}
+motionToggle?.addEventListener('click', () => {
+  morphoPaused = !morphoPaused;
+  try { sessionStorage.setItem('nadezhda-morpho-paused', morphoPaused ? 'yes' : 'no'); } catch {}
+  updateMorphoPreference();
+});
+morphoPreference.addEventListener('change', updateMorphoPreference);
+document.addEventListener('visibilitychange', updateMorphoPreference);
+if ('IntersectionObserver' in window) {
+  const sceneObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => entry.target.classList.toggle('is-in-view', entry.isIntersecting));
+  }, { threshold: 0 });
+  document.querySelectorAll('.morpho-scene').forEach(scene => sceneObserver.observe(scene));
+} else document.querySelectorAll('.morpho-scene').forEach(scene => scene.classList.add('is-in-view'));
+updateMorphoPreference();
+
 // A scroll-driven route. It stops when scrolling stops, and never covers the text.
 (() => {
   const svg = document.getElementById('journey-track');
@@ -57,6 +86,15 @@ openHashTopic();
   const navLinks = [...document.querySelectorAll('.desktop-nav a, .mobile-nav a[href^="#"]')];
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
   const contact = document.getElementById('contact');
+  const butterfly = document.getElementById('journey-butterfly');
+  const heroButterflies = [...document.querySelectorAll('.hero-flight .morpho-flight')];
+  const heroScene = document.querySelector('.hero-flight');
+  const heroSection = document.getElementById('home');
+  let butterflyRestTimer = 0;
+  let butterflySize = 30;
+  let flightGutter = 0;
+  let heroEnd = 0;
+  let lastButterflyY = -1;
   let points = [];
   let stopElements = [];
   let length = 0;
@@ -82,6 +120,39 @@ openHashTopic();
     const position = base.getPointAtLength(distance);
     progress.setAttribute('stroke-dashoffset', reducedMotion.matches ? '0' : String(length - distance));
     marker.setAttribute('transform', `translate(${position.x} ${position.y})`);
+    const motionEnabled = document.body.dataset.morphoMotion === 'on';
+    if (heroScene?.classList.contains('is-in-view') && motionEnabled) {
+      heroButterflies.forEach(item => {
+        const factor = Number.parseFloat(getComputedStyle(item).getPropertyValue('--lift-factor')) || .06;
+        item.style.setProperty('--scroll-lift', `${-Math.min(60, window.scrollY * factor)}px`);
+      });
+    }
+    if (butterfly) {
+      butterfly.hidden = !motionEnabled || window.scrollY < heroEnd;
+      if (!butterfly.hidden) {
+        // Follow the existing path at the reading position, strictly inside its gutter.
+        const desiredY = Math.min(points.at(-1).y, window.scrollY + window.innerHeight * .46);
+        let lo = 0;
+        let hi = length;
+        for (let i = 0; i < 12; i += 1) {
+          const mid = (lo + hi) / 2;
+          if (base.getPointAtLength(mid).y < desiredY) lo = mid; else hi = mid;
+        }
+        const flightDistance = (lo + hi) / 2;
+        const flightPoint = base.getPointAtLength(flightDistance);
+        const next = base.getPointAtLength(Math.min(length, flightDistance + 8));
+        const turn = Math.max(-28, Math.min(28, Math.atan2(next.x - flightPoint.x, next.y - flightPoint.y) * 180 / Math.PI));
+        const flightX = Math.max(1, Math.min(flightGutter - butterflySize - 2, flightPoint.x - butterflySize / 2));
+        butterfly.style.transform = `translate3d(${flightX}px,${flightPoint.y - butterflySize / 2}px,0) rotate(${-turn}deg)`;
+        butterfly.classList.add('is-ready');
+        if (Math.abs(flightPoint.y - lastButterflyY) > .5) {
+          butterfly.classList.add('is-flying');
+          clearTimeout(butterflyRestTimer);
+          butterflyRestTimer = setTimeout(() => butterfly.classList.remove('is-flying'), 250);
+        }
+        lastButterflyY = flightPoint.y;
+      } else butterfly.classList.remove('is-flying');
+    }
     svg.dataset.progress = fraction.toFixed(3);
     let nextIndex = 0;
     points.forEach((point, index) => { if (point.y <= targetY + 2) nextIndex = index; });
@@ -107,6 +178,13 @@ openHashTopic();
     const width = document.documentElement.clientWidth;
     const height = Math.max(document.body.offsetHeight, window.innerHeight);
     const gutter = document.querySelector('.hero').getBoundingClientRect().left;
+    flightGutter = gutter;
+    butterflySize = Math.min(width <= 680 ? 18 : 30, Math.max(12, gutter - 6));
+    if (butterfly) {
+      butterfly.style.width = butterflySize + 'px';
+      butterfly.style.height = butterflySize + 'px';
+    }
+    heroEnd = heroSection.offsetTop + heroSection.offsetHeight - window.innerHeight * .25;
     const centerX = Math.min(54, Math.max(8, gutter * .47));
     const wave = Math.min(22, gutter * .24);
     points = sections.map((section, index) => {
@@ -158,6 +236,7 @@ openHashTopic();
   window.addEventListener('scroll', schedulePaint, { passive: true });
   window.addEventListener('resize', scheduleGeometry);
   reducedMotion.addEventListener('change', schedulePaint);
+  document.addEventListener('morphomotionchange', schedulePaint);
   if ('ResizeObserver' in window) new ResizeObserver(scheduleGeometry).observe(document.querySelector('main'));
   if ('IntersectionObserver' in window) {
     new IntersectionObserver(entries => {

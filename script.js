@@ -175,7 +175,7 @@ if (document.modelContext?.registerTool) {
       name: 'select_conversation_topic',
       title: 'Открыть тему для разговора',
       description: 'Раскрывает описание темы на странице. Не записывает на консультацию и не отправляет сообщения.',
-      inputSchema: { type: 'object', properties: { topic: { type: 'string', enum: ['adult', 'quiet', 'relations', 'self'] } }, required: ['topic'], additionalProperties: false },
+      inputSchema: { type: 'object', properties: { topic: { type: 'string', enum: ['adult', 'quiet', 'relations', 'self', 'anxiety', 'direction'] } }, required: ['topic'], additionalProperties: false },
       annotations: { readOnlyHint: false, untrustedContentHint: false },
       execute(input) {
         if (!input || typeof input !== 'object' || Object.keys(input).length !== 1 || typeof input.topic !== 'string') throw new Error('Неизвестная тема');

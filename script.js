@@ -17,7 +17,7 @@ menuButton.addEventListener('click', () => {
 mobileNav.querySelectorAll('a').forEach(link => link.addEventListener('click', () => closeMenu()));
 document.addEventListener('keydown', event => { if (event.key === 'Escape') closeMenu(true); });
 document.addEventListener('click', event => { if (!event.target.closest('.header')) closeMenu(); });
-const desktopQuery = window.matchMedia('(min-width: 981px)');
+const desktopQuery = window.matchMedia('(min-width: 1161px)');
 desktopQuery.addEventListener('change', event => { if (event.matches) closeMenu(); });
 
 const topics = [...document.querySelectorAll('details[data-topic]')];

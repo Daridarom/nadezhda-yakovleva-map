@@ -282,3 +282,115 @@ applyTheme(document.documentElement.dataset.theme === 'blue' ? 'blue' : 'sand');
 themeToggle?.addEventListener('click', () => {
   applyTheme(document.documentElement.dataset.theme === 'blue' ? 'sand' : 'blue');
 });
+
+// Content polish: document accordion, map caption, and evenly distributed original photos.
+(() => {
+  const styleId = 'content-polish-2026-09-15';
+  if (!document.getElementById(styleId)) {
+    const style = document.createElement('style');
+    style.id = styleId;
+    style.textContent = `
+      .education-panel > summary{cursor:pointer}
+      .education-panel .education-grid{display:grid;grid-template-columns:1fr;gap:0;margin-top:20px}
+      .education-detail{border-top:1px solid var(--line);background:transparent}
+      .education-detail:last-child{border-bottom:1px solid var(--line)}
+      .education-detail>summary{display:grid;grid-template-columns:minmax(0,1fr) 34px;align-items:center;gap:20px;padding:20px 8px;cursor:pointer;list-style:none}
+      .education-detail>summary::-webkit-details-marker{display:none}
+      .education-detail>summary:hover{background:var(--hover)}
+      .education-detail__year{display:block;font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin-bottom:5px}
+      .education-detail__title{display:block;font-family:var(--serif);font-size:1.55rem;line-height:1.2;color:var(--ink)}
+      .education-detail__description{display:block;font-size:.86rem;line-height:1.55;color:var(--muted);margin-top:5px;max-width:760px}
+      .education-detail__icon{display:block;position:relative;width:29px;height:29px;border:1px solid var(--icon-ring);border-radius:50%}
+      .education-detail__icon:before,.education-detail__icon:after{content:'';position:absolute;background:var(--ink);left:8px;right:8px;height:1px;top:13px}
+      .education-detail__icon:after{transform:rotate(90deg)}
+      .education-detail[open] .education-detail__icon:after{display:none}
+      .education-detail__body{padding:0 8px 24px}
+      .education-detail__body img{height:auto;max-height:620px;object-fit:contain;object-position:left center}
+      .education-detail__body .document-link,.education-detail__body .document-original{display:inline-flex;margin-top:12px}
+      .map-caption-note{border-left:2px solid var(--accent);padding-left:14px;max-width:620px}
+      .story-photo{margin-top:48px;display:block}
+      .story-photo img{display:block;width:100%;height:auto;max-height:680px;object-fit:contain;border-radius:3px}
+      .story-photo figcaption{font-size:.8125rem;line-height:1.65;color:var(--muted);margin-top:12px}
+      .story-photo--routes{width:min(72%,760px);margin-left:auto}
+      .story-photo--approach{width:min(64%,680px);margin-right:auto}
+      .story-photo--space{width:min(70%,720px);margin-left:auto;margin-bottom:10px}
+      @media(max-width:680px){
+        .education-detail>summary{grid-template-columns:minmax(0,1fr) 30px;gap:12px;padding:17px 4px}
+        .education-detail__title{font-size:1.35rem}
+        .education-detail__description{font-size:.82rem}
+        .education-detail__body{padding-inline:4px}
+        .story-photo,.story-photo--routes,.story-photo--approach,.story-photo--space{width:100%;margin:34px 0 0}
+        .story-photo img{max-height:none}
+      }
+    `;
+    document.head.append(style);
+  }
+
+  const educationPanel = document.querySelector('.education-panel');
+  if (educationPanel) {
+    educationPanel.open = false;
+    const grid = educationPanel.querySelector('.education-grid');
+    if (grid && !grid.querySelector('.education-detail')) {
+      [...grid.querySelectorAll(':scope > .education-item')].forEach((item, index) => {
+        const yearNode = item.querySelector('.education-year');
+        const titleNode = item.querySelector('h3');
+        const descriptionNode = [...item.children].find(node => node.tagName === 'P' && !node.classList.contains('education-year'));
+        const year = yearNode?.textContent.trim() || '';
+        const title = titleNode?.textContent.trim() || `Документ ${index + 1}`;
+        const description = descriptionNode?.textContent.trim() || '';
+        yearNode?.remove();
+        titleNode?.remove();
+        descriptionNode?.remove();
+
+        const details = document.createElement('details');
+        details.className = 'education-detail';
+        details.setAttribute('name', 'education-documents');
+        const summary = document.createElement('summary');
+        const text = document.createElement('span');
+        text.innerHTML = `${year ? `<span class="education-detail__year">${year}</span>` : ''}<span class="education-detail__title"></span>${description ? `<span class="education-detail__description"></span>` : ''}`;
+        text.querySelector('.education-detail__title').textContent = title;
+        const descriptionTarget = text.querySelector('.education-detail__description');
+        if (descriptionTarget) descriptionTarget.textContent = description;
+        const icon = document.createElement('span');
+        icon.className = 'education-detail__icon';
+        icon.setAttribute('aria-hidden', 'true');
+        summary.append(text, icon);
+
+        const body = document.createElement('div');
+        body.className = 'education-detail__body';
+        while (item.firstChild) body.append(item.firstChild);
+        details.append(summary, body);
+        item.replaceWith(details);
+      });
+
+      const detailsItems = [...grid.querySelectorAll('.education-detail')];
+      detailsItems.forEach(item => item.addEventListener('toggle', () => {
+        if (!item.open) return;
+        detailsItems.forEach(other => { if (other !== item) other.open = false; });
+      }));
+    }
+  }
+
+  const mapCaption = document.querySelector('.place-links p');
+  if (mapCaption) {
+    mapCaption.textContent = 'На карте место отмечено как «Нараяна». Психологический центр находится здесь же. Время и детали визита согласуем при записи.';
+    mapCaption.classList.add('map-caption-note');
+  }
+
+  const gallery = document.querySelector('.studio-gallery');
+  if (gallery) {
+    const figures = [...gallery.querySelectorAll(':scope > figure')];
+    const placements = [
+      { anchor: document.querySelector('.work-list'), className: 'story-photo--routes' },
+      { anchor: document.querySelector('#approach .process-note'), className: 'story-photo--approach' },
+      { anchor: document.querySelector('#space .space-grid'), className: 'story-photo--space' }
+    ];
+    figures.forEach((figure, index) => {
+      const placement = placements[index];
+      if (!placement?.anchor) return;
+      figure.classList.add('story-photo', placement.className);
+      placement.anchor.insertAdjacentElement('afterend', figure);
+    });
+    gallery.remove();
+  }
+})();

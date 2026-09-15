@@ -60,8 +60,12 @@ GitHub: https://github.com/Daridarom/nadezhda-yakovleva-map
 
 ## Фотографии и шрифты
 
-- `portrait.webp`: исходный файл `849EF37D-03DB-46A6-BAA7-C42034653F46(1).webp`.
-- `sea.webp`: исходный файл `6D5DAAC9-64AB-499B-8E8B-B98A37C93EDB(1).webp`.
+Актуальный фотосет от 15 сентября 2026 хранится в мастер-разрешении 1280 × 1920. Не заменять эти файлы уменьшенными копиями; при необходимости делать отдельные производные версии.
+
+- `portrait.webp` / `nadezhda-park.webp`: исходник `33317AD0-EBFD-49B1-8D89-005D8C051A97.webp`.
+- `portrait-studio.webp` / `nadezhda-consultation.webp`: исходник `B89D8EF4-222B-4016-8662-F1AA48AD1146.webp`.
+- `sea.webp` / `nadezhda-tablet.webp`: исходник `7F33FBAF-6FCE-44CB-9E3E-8BA47CCBB65B.webp`.
+- Мастер-копии также сохранены в рабочем Google Drive штаба, папка `ASSETS — сайт Надежды Яковлевой / ORIGINALS 1280x1920`.
 - Cormorant и Inter размещены локально. Лицензии — `FONT-LICENSES.txt`.
 
 ## Приглашения и план развития — 14 сентября 2026

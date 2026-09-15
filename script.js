@@ -425,7 +425,6 @@ themeToggle?.addEventListener('click', () => {
 
   const mapCaption = document.querySelector('.place-links p');
   if (mapCaption) {
-    mapCaption.textContent = 'На карте место отмечено как «Нараяна». Психологический центр находится здесь же. Время и детали визита согласуем при записи.';
     mapCaption.classList.add('map-caption-note');
   }
 
@@ -433,7 +432,7 @@ themeToggle?.addEventListener('click', () => {
   if (gallery) {
     const figures = [...gallery.querySelectorAll(':scope > figure')];
     const placements = [
-      { anchor: document.querySelector('.work-list'), className: 'story-photo--routes' },
+      { anchor: document.querySelector('#map .topics-note'), className: 'story-photo--routes' },
       { anchor: document.querySelector('#approach .process-note'), className: 'story-photo--approach' },
       { anchor: document.querySelector('#space .space-grid'), className: 'story-photo--space' }
     ];

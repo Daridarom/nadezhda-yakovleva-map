@@ -264,3 +264,21 @@ if (document.modelContext?.registerTool) {
   } catch {}
   window.addEventListener('pagehide', () => lifecycle.abort(), { once: true });
 }
+
+// Colour palette preview: "sand" (default) or "blue". The choice is remembered in this browser only.
+const themeToggle = document.getElementById('theme-toggle');
+const themeMeta = document.querySelector('meta[name="theme-color"]');
+function applyTheme(theme) {
+  if (theme === 'blue') document.documentElement.dataset.theme = 'blue';
+  else delete document.documentElement.dataset.theme;
+  if (themeMeta) themeMeta.content = theme === 'blue' ? '#f3f5f8' : '#f6f3eb';
+  if (themeToggle) {
+    themeToggle.setAttribute('aria-pressed', String(theme === 'blue'));
+    themeToggle.querySelector('.theme-label').textContent = theme === 'blue' ? 'Палитра: синяя' : 'Палитра: песок';
+  }
+  try { localStorage.setItem('nadezhda-theme', theme); } catch {}
+}
+applyTheme(document.documentElement.dataset.theme === 'blue' ? 'blue' : 'sand');
+themeToggle?.addEventListener('click', () => {
+  applyTheme(document.documentElement.dataset.theme === 'blue' ? 'sand' : 'blue');
+});

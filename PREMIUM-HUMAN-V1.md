@@ -21,3 +21,8 @@
 - не заменять реальные фото AI-изображениями.
 
 `premium-human.css` подключён поверх базовых стилей, чтобы направление можно было сравнивать и откатывать без разрушения production-версии.
+## Live preview
+
+Публичная ссылка для просмотра: https://nadezhda-yakovleva-premium-human.vercel.app
+
+Preview собран из ветки `design/premium-human-v1-20260916` и не заменяет действующий GitHub Pages на `main`.

@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="260" height="210" viewBox="0 0 260 210" fill="none">
+  <defs>
+    <linearGradient id="morpho-upper" x1="130" y1="112" x2="52" y2="28" gradientUnits="userSpaceOnUse"><stop stop-color="#eee0bc"/><stop offset=".3" stop-color="#9ccdd8"/><stop offset=".66" stop-color="#538fba"/><stop offset="1" stop-color="#2f5578"/></linearGradient>
+    <linearGradient id="morpho-lower" x1="130" y1="120" x2="76" y2="180" gradientUnits="userSpaceOnUse"><stop stop-color="#e6dcbe"/><stop offset=".38" stop-color="#8dc3d2"/><stop offset=".78" stop-color="#4b83ae"/><stop offset="1" stop-color="#2d506f"/></linearGradient>
+    <radialGradient id="morpho-glow"><stop stop-color="#f6e2b8" stop-opacity=".34"/><stop offset="1" stop-color="#eedcbb" stop-opacity="0"/></radialGradient>
+    <g id="morpho-half">
+      <path d="M126 88C117 63 98 37 68 26 45 42 39 76 55 101 75 121 104 118 126 113Z" fill="url(#morpho-upper)" stroke="#486f88" stroke-width="1.5" stroke-linejoin="round"/>
+      <path d="M126 118C107 122 86 131 74 149 82 172 104 184 123 175 129 157 128 136 126 118Z" fill="url(#morpho-lower)" stroke="#486f88" stroke-width="1.5" stroke-linejoin="round"/>
+      <g stroke="#3c6683" stroke-width=".8" opacity=".6"><path d="M125 96 66 29M124 101 55 62M124 107 51 89M125 111 63 108M125 124 80 147M126 134 83 160M126 145 92 170M126 156 110 176"/></g>
+      <g fill="#efe2c1"><circle cx="61" cy="39" r="2.1"/><circle cx="52" cy="58" r="2.4"/><circle cx="49" cy="78" r="2.4"/><circle cx="56" cy="96" r="2.1"/><circle cx="73" cy="110" r="1.8"/><circle cx="82" cy="155" r="2.1"/><circle cx="92" cy="169" r="2.1"/><circle cx="108" cy="176" r="1.8"/></g>
+      <path d="M129 79C123 56 114 33 101 20" stroke="#2f4a5e" stroke-width="1.7" stroke-linecap="round" opacity=".9"/>
+      <circle cx="100" cy="19" r="2.6" fill="#2f4a5e" opacity=".9"/>
+    </g>
+  </defs>
+  <circle cx="130" cy="104" r="86" fill="url(#morpho-glow)"/>
+  <use href="#morpho-half"/>
+  <use href="#morpho-half" transform="translate(260 0) scale(-1 1)"/>
+  <path d="M130 80C135 92 135 124 130 152 125 124 125 92 130 80Z" fill="#344f65"/>
+  <ellipse cx="130" cy="96" rx="4.6" ry="12" fill="#3d5d75"/>
+  <path d="M130 88C131 104 131 126 130 146" stroke="#6d8ba0" stroke-width="1.2" stroke-linecap="round" opacity=".8"/>
+</svg>

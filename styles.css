@@ -153,7 +153,7 @@ main,.footer{position:relative;z-index:1}
 .hero-flight{position:absolute;inset:0;z-index:2}
 .morpho-flight{position:absolute;width:var(--butterfly-size,92px);height:var(--butterfly-size,92px);transform:translate3d(0,var(--scroll-lift,0px),0);will-change:transform}
 .morpho{display:block;width:100%;height:100%;position:relative;transform:rotate(var(--rest-angle,-24deg));animation:morpho-drift 9s ease-in-out infinite;animation-delay:var(--flight-delay,0s);animation-play-state:paused}
-.morpho-wing,.morpho-body{position:absolute;inset:0;background:url('assets/morpho-flight.webp') center/contain no-repeat;transform-origin:50% 50%}
+.morpho-wing,.morpho-body{position:absolute;inset:0;background:var(--morpho-art,url('assets/morpho-flight.webp')) center/contain no-repeat;transform-origin:50% 50%}
 .wing-left{clip-path:inset(0 50% 0 0);animation:morpho-wingbeat 1.8s ease-in-out infinite;animation-delay:var(--flight-delay,0s);animation-play-state:paused}
 .wing-right{clip-path:inset(0 0 0 50%);animation:morpho-wingbeat 1.8s ease-in-out infinite;animation-delay:var(--flight-delay,0s);animation-play-state:paused}
 .morpho-body{clip-path:inset(0 47% 0 47%)}
@@ -226,10 +226,10 @@ html{transition:background .3s}body,.header,.approach-section,.contact-section,.
 .stage-copy h3{font-size:2.125rem;line-height:1.2;margin:12px 0}
 .stage-copy p{font-size:.9375rem;line-height:1.75}
 .stage-opening,.stage-free{color:#243e50}
-.stage-butterfly.morpho{width:176px;height:176px;--rest-angle:-16deg;animation-name:transformation-drift;animation-duration:12s;filter:drop-shadow(0 12px 16px #36596c24)}
+.stage-butterfly.morpho{--morpho-art:url('assets/transformation-morpho.svg');width:100%;max-width:260px;height:210px;--rest-angle:-5deg;animation-name:transformation-drift;animation-duration:12s;filter:drop-shadow(0 12px 16px #36596c24)}
 .stage-butterfly .morpho-wing{animation-name:transformation-wings;animation-duration:7s}
 .transformation-note{font-size:.8125rem;line-height:1.7;color:var(--muted);margin-top:18px;max-width:720px}
-@keyframes transformation-drift{0%,100%{transform:translateY(0) rotate(-16deg)}50%{transform:translateY(-6px) rotate(-12deg)}}
+@keyframes transformation-drift{0%,100%{transform:translateY(0) rotate(-5deg)}50%{transform:translateY(-7px) rotate(-2deg)}}
 @keyframes transformation-wings{0%,100%{transform:scaleX(1)}50%{transform:scaleX(.88)}}
 
 /* Six territories replace both the text routes and the duplicated directions list. */
@@ -255,7 +255,7 @@ html{transition:background .3s}body,.header,.approach-section,.contact-section,.
 @media(min-width:681px) and (max-width:980px){
   .transformation-path{grid-template-columns:repeat(2,minmax(0,1fr));padding:20px 16px;gap:24px 0}
   .transformation-landscape{background:radial-gradient(ellipse at 90% 100%,#faf4e3,transparent 65%),linear-gradient(160deg,#263f53,#3b5969 40%,#b5c9ce 65%,#edf0e7)}
-  .stage-art{height:170px}.stage-art>img{height:180px}.stage-butterfly.morpho{width:154px;height:154px}
+  .stage-art{height:170px}.stage-art>img{height:180px}.stage-butterfly.morpho{max-width:220px;height:180px}
   .stage-copy h3{font-size:2rem}.stage-copy p{font-size:.9375rem}
   .territories{grid-template-columns:repeat(2,minmax(0,1fr))}
 }
@@ -266,10 +266,10 @@ html{transition:background .3s}body,.header,.approach-section,.contact-section,.
   .transformation-landscape{border-radius:4px 4px 48px 4px;background:radial-gradient(ellipse at 100% 100%,#faf4e3,transparent 45%),linear-gradient(178deg,#263f53,#3b5969 37%,#b5c9ce 65%,#edf0e7)}
   .transformation-contours{opacity:.1}
   .transformation-path{grid-template-columns:minmax(0,1fr);padding:10px 20px 20px}
-  .transformation-stage{display:grid;grid-template-columns:96px minmax(0,1fr);gap:18px;align-items:center;min-height:222px;padding:20px 0}
-  .stage-art{height:140px;margin:0 -8px}
+  .transformation-stage{display:grid;grid-template-columns:112px minmax(0,1fr);gap:14px;align-items:center;min-height:196px;padding:18px 0}
+  .stage-art{height:150px;margin:0 -6px}
   .stage-art>img{height:150px}
-  .stage-butterfly.morpho{width:100px;height:100px}
+  .stage-butterfly.morpho{max-width:124px;height:128px}
   .stage-copy h3{font-size:1.875rem;margin:10px 0}
   .stage-copy p{font-size:.875rem;line-height:1.75}
   .stage-number{font-size:.625rem}
@@ -287,9 +287,9 @@ html{transition:background .3s}body,.header,.approach-section,.contact-section,.
 }
 @media(max-width:360px){
   .transformation-path{padding-inline:16px}
-  .transformation-stage{grid-template-columns:72px minmax(0,1fr);gap:12px;min-height:234px}
+  .transformation-stage{grid-template-columns:94px minmax(0,1fr);gap:11px;min-height:206px}
   .stage-copy h3{font-size:1.65rem}
-  .stage-butterfly.morpho{width:82px;height:82px}
+  .stage-butterfly.morpho{max-width:106px;height:110px}
   .territory.route>summary{grid-template-columns:66px minmax(0,1fr);gap:0 13px;padding:16px}
   .territory .route-name{font-size:1.625rem}
   .territory-art svg{transform:scale(2.2)}

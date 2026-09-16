@@ -150,6 +150,7 @@ main,.footer{position:relative;z-index:1}
 .brand-butterflies{width:43px;height:46px;object-fit:contain;mix-blend-mode:multiply;flex:0 0 43px}
 .portrait-frame{position:relative;isolation:isolate}
 .morpho-scene{pointer-events:none;user-select:none}
+.stage-meadow{position:absolute;inset-inline:0;bottom:2px;height:62px;background:url('assets/transformation-meadow.svg') center bottom/100% auto no-repeat;opacity:.72;pointer-events:none}
 .hero-flight{position:absolute;inset:0;z-index:2}
 .morpho-flight{position:absolute;width:var(--butterfly-size,92px);height:var(--butterfly-size,92px);transform:translate3d(0,var(--scroll-lift,0px),0);will-change:transform}
 .morpho{display:block;width:100%;height:100%;position:relative;transform:rotate(var(--rest-angle,-24deg));animation:morpho-drift 9s ease-in-out infinite;animation-delay:var(--flight-delay,0s);animation-play-state:paused}
@@ -217,7 +218,8 @@ html{transition:background .3s}body,.header,.approach-section,.contact-section,.
 .transformation-section .section-heading>p{max-width:295px}
 .transformation-landscape{position:relative;isolation:isolate;border-radius:5px 5px 72px 5px;background:radial-gradient(ellipse at 98% 10%,#faf4e3 0,transparent 45%),linear-gradient(105deg,#263f53 0%,#3b5969 32%,#b5c9ce 64%,#edf0e7 100%)}
 .transformation-contours{position:absolute;inset:0;width:100%;height:100%;color:#e7e4cf;opacity:.14;pointer-events:none;border-radius:inherit;overflow:hidden}
-.transformation-path{position:relative;list-style:none;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;margin:0;padding:20px 20px 34px}
+.transformation-landscape:after{content:'';position:absolute;left:0;right:0;top:44%;height:26%;background:linear-gradient(180deg,transparent,#f6ecd6 55%,transparent);opacity:.22;pointer-events:none;border-radius:inherit}
+.transformation-path{position:relative;z-index:1;list-style:none;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;margin:0;padding:20px 20px 34px}
 .transformation-stage{min-width:0;padding:0 20px;color:#f5f4e9}
 .stage-art{position:relative;display:flex;align-items:center;justify-content:center;height:210px;margin:0 -10px 10px}
 .stage-art>img{width:100%;max-width:260px;height:210px;object-fit:contain}

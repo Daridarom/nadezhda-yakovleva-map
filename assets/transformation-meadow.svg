@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="260" height="96" viewBox="0 0 260 96" fill="none">
+  <defs>
+    <linearGradient id="blade" x1="0" y1="96" x2="0" y2="18" gradientUnits="userSpaceOnUse"><stop stop-color="#8fa38c" stop-opacity=".75"/><stop offset="1" stop-color="#cfd8c0" stop-opacity=".25"/></linearGradient>
+    <linearGradient id="petal" x1="0" y1="96" x2="0" y2="30" gradientUnits="userSpaceOnUse"><stop stop-color="#c9a9c4" stop-opacity=".8"/><stop offset="1" stop-color="#efdcd4" stop-opacity=".7"/></linearGradient>
+  </defs>
+  <g stroke="url(#blade)" stroke-width="2" stroke-linecap="round" fill="none" opacity=".72">
+    <path d="M14 94C16 76 13 58 6 44M32 95C31 74 36 56 46 40M58 95C54 78 55 62 62 50M88 95C90 78 86 62 78 48M112 95C109 77 112 60 120 47M146 95C148 76 144 58 136 45M172 95C170 77 175 60 184 46M198 95C195 78 197 62 205 50M224 95C227 77 223 60 215 48M246 94C244 76 248 60 255 47"/>
+  </g>
+  <g stroke="#9aae95" stroke-opacity=".38" stroke-width="1.4" stroke-linecap="round" fill="none">
+    <path d="M40 95C40 80 38 68 34 58M68 96C70 82 68 70 64 60M130 95C130 80 132 68 137 57M190 95C190 81 188 69 183 59M236 96C236 82 238 70 243 60"/>
+  </g>
+  <g fill="url(#petal)">
+    <path d="M34 58C29 52 29 44 34 39 39 44 39 52 34 58Z"/><path d="M34 56C27 55 22 49 22 42 29 44 33 49 34 56Z"/><path d="M34 56C41 55 46 49 46 42 39 44 35 49 34 56Z"/>
+    <path d="M137 57C132 51 132 44 137 39 142 44 142 51 137 57Z"/><path d="M137 55C130 54 126 48 126 42 133 43 136 48 137 55Z"/>
+    <path d="M183 59C178 53 178 46 183 41 188 46 188 53 183 59Z"/><path d="M183 57C190 56 195 51 195 44 188 46 184 51 183 57Z"/>
+    <path d="M243 60C239 55 239 49 243 45 247 49 247 55 243 60Z"/>
+  </g>
+  <g fill="#f2e2bd" fill-opacity=".85"><circle cx="34" cy="47" r="1.9"/><circle cx="137" cy="46" r="1.8"/><circle cx="183" cy="48" r="1.8"/><circle cx="243" cy="51" r="1.5"/></g>
+  <g fill="#f4e6c4" fill-opacity=".55"><circle cx="76" cy="30" r="1.6"/><circle cx="104" cy="20" r="1.2"/><circle cx="160" cy="26" r="1.4"/><circle cx="212" cy="18" r="1.2"/></g>
+</svg>

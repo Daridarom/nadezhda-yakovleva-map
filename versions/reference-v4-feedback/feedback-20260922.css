@@ -1,0 +1,17 @@
+/* Feedback from Надежда, 22.09.2026 */
+.brand{min-width:0}
+.brand-logo{width:86px;height:46px;object-fit:contain;object-position:center;flex:0 0 86px;border-radius:3px;background:#fff}
+.brand-name{font-size:.9375rem;line-height:1.3;white-space:nowrap}
+.document-link img{background:#fff}
+.education-item .document-link{margin-top:auto}
+@media(max-width:680px){
+  .brand-logo{width:62px;height:34px;flex-basis:62px}
+  .brand-name{font-size:.8125rem}
+}
+@media(max-width:360px){
+  .brand-name{display:none}
+  .brand-logo{width:78px;height:36px;flex-basis:78px}
+}
+
+:root{--paper:#f7f3eb;--soft:#e8edef;--accent:#496f86;--ink:#223b47;--muted:#687278;--line:#d7d5ce;--header-bg:rgba(247,243,235,.96)}
+body{background:radial-gradient(circle at 80% 0,#eef3f5 0,transparent 34%),#f7f3eb}

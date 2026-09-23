@@ -349,3 +349,33 @@ html{transition:background .3s}body,.header,.approach-section,.contact-section,.
 @media(max-width:360px){
   .hero-photo-crop{height:310px}
 }
+
+
+/* Hero balance and contacts · 2026-09-24 */
+.contact-details{line-height:1.7!important}
+.contact-details span{font-size:.75rem!important;letter-spacing:.08em;text-transform:uppercase;color:var(--on-dark-muted)!important}
+.contact-details a{color:var(--sand);text-decoration:none;border-bottom:1px solid rgba(255,255,255,.28)}
+.contact-details a:hover{border-bottom-color:var(--sand)}
+.contact-phone{display:inline-block;margin-top:6px}
+@media(min-width:681px){
+  .hero{grid-template-columns:minmax(0,1.08fr) minmax(340px,.82fr);gap:44px;align-items:center;padding-block:46px 54px}
+  .hero-photo{align-self:center;justify-self:end;width:100%;max-width:460px}
+  .hero-photo-crop{height:470px;border-radius:34% 34% 3px 3px}
+  .hero-photo-crop img{object-position:50% 21%;transform:scale(1.18);transform-origin:50% 16%}
+}
+@media(min-width:681px) and (max-width:1150px){
+  .hero{gap:36px}
+  .hero-photo{max-width:430px}
+  .hero-photo-crop{height:450px}
+}
+@media(min-width:681px) and (max-width:980px){
+  .hero{grid-template-columns:minmax(0,1fr) minmax(320px,.78fr);gap:30px}
+  .hero-photo{max-width:390px}
+  .hero-photo-crop{height:420px}
+}
+@media(max-width:680px){
+  .hero-photo-crop{height:360px}
+  .hero-photo-crop img{object-position:50% 20%;transform:scale(1.24);transform-origin:50% 16%}
+  .contact-details{font-size:.86rem!important}
+}
+@media(max-width:360px){.hero-photo-crop{height:330px}}

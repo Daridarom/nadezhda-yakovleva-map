@@ -313,3 +313,39 @@ html{transition:background .3s}body,.header,.approach-section,.contact-section,.
     margin:12px 0 22px;
   }
 }
+
+/* Portrait crop · original photo, no image replacement */
+.hero-photo-crop{
+  height:580px;
+  overflow:hidden;
+  border-radius:43% 43% 3px 3px;
+}
+.hero-photo-crop img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:50% 24%;
+  transform:scale(1.28);
+  transform-origin:50% 20%;
+  border-radius:0;
+}
+@media(max-width:1150px){
+  .hero-photo-crop{height:540px}
+}
+@media(max-width:980px){
+  .hero-photo-crop{height:505px}
+}
+@media(max-width:680px){
+  .hero-photo-crop{
+    height:340px;
+    border-radius:37% 37% 3px 3px;
+  }
+  .hero-photo-crop img{
+    object-position:50% 22%;
+    transform:scale(1.34);
+    transform-origin:50% 18%;
+  }
+}
+@media(max-width:360px){
+  .hero-photo-crop{height:310px}
+}

@@ -294,3 +294,22 @@ html{transition:background .3s}body,.header,.approach-section,.contact-section,.
   .territory .route-name{font-size:1.625rem}
   .territory-art svg{transform:scale(2.2)}
 }
+
+
+/* Narayana logo · final feedback 2026-09-23 */
+.narayana-logo{
+  display:block;
+  width:min(320px,82%);
+  height:auto;
+  margin:14px 0 26px;
+  object-fit:contain;
+  object-position:left center;
+  border-radius:4px;
+  background:#fff;
+}
+@media(max-width:680px){
+  .narayana-logo{
+    width:min(270px,88%);
+    margin:12px 0 22px;
+  }
+}

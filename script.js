@@ -433,8 +433,7 @@ themeToggle?.addEventListener('click', () => {
     const figures = [...gallery.querySelectorAll(':scope > figure')];
     const placements = [
       { anchor: document.querySelector('#map .topics-note'), className: 'story-photo--routes' },
-      { anchor: document.querySelector('#approach .process-note'), className: 'story-photo--approach' },
-      { anchor: document.querySelector('#space .space-grid'), className: 'story-photo--space' }
+      { anchor: document.querySelector('#approach .process-note'), className: 'story-photo--approach' }
     ];
     figures.forEach((figure, index) => {
       const placement = placements[index];
